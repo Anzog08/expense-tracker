@@ -3,7 +3,7 @@ import { makeHash } from "../../utils/passwordHash.js";
 import { client } from "../../index.js";
 
 const userDB =
-  "/Users/23LP5619/Desktop/expense/expense-tracker/backend-income-expense/models/users.json";
+  "/Users/23LP5619/Desktop/untitled folder/backend-income-expense/models/users.json";
 
 const createUser = async (email, password, username) => {
   const userCreateQuery = `
