@@ -1,4 +1,6 @@
 import express from "express";
+import recordRouter from "./routes/record.router.js";
+import categoryRouter from "./routes/category.router.js";
 import userRouter from "./routes/userRouter.js";
 import cors from "cors";
 // const pg = require("pg");
@@ -14,13 +16,10 @@ export const client = new pg.Client({
 const dbInit = async () => {
   await client.connect();
   await createUserTable();
+  await createRecordTable();
 };
 
-dbInit();
-
-client.on("error", (error) => {
-  console.log("error", error);
-});
+// dbInit();
 
 const createUserTable = async () => {
   const query = `CREATE TABLE IF NOT EXISTS users(
@@ -34,12 +33,29 @@ const createUserTable = async () => {
   const result = await client.query(query);
 };
 
-const port = 4000;
+const createRecordTable = async () => {
+  const query = `CREATE TABLE IF NOT EXISTS records(
+    id SERIAL PRIMARY KEY,
+    recordType TEXT NOT NULL,
+    amount INT NOT NULL,
+    category TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    payee TEXT NOT NULL,
+    note TEXT NOT NULL 
+  ) `;
+
+  const result = await client.query(query);
+};
+
+const port = 8000;
 const app = express();
 app.use(express.json());
 app.use(cors());
 
 app.use(userRouter);
+
+app.use("/record", recordRouter);
+app.use("/category", categoryRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on port localhost:${port}`);

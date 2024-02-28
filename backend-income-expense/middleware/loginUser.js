@@ -1,7 +1,7 @@
 import fs from "fs";
 import jwt from "jsonwebtoken";
 const userDB =
-  "/Users/23LP5619/Desktop/untitled folder/backend-income-expense/models/users.json";
+  "/Users/23LP5619/Desktop/dorj/backend-income-expense/models/users.json";
 import { compareHash } from "../utils/passwordHash.js";
 
 export const loginUser = async (req, res, next) => {

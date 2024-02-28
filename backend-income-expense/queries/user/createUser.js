@@ -3,7 +3,7 @@ import { makeHash } from "../../utils/passwordHash.js";
 import { client } from "../../index.js";
 
 const userDB =
-  "/Users/23LP5619/Desktop/untitled folder/backend-income-expense/models/users.json";
+  "/Users/23LP5619/Desktop/dorj/backend-income-expense/models/users.json";
 
 const createUser = async (email, password, username) => {
   const userCreateQuery = `
@@ -31,9 +31,7 @@ export const createNewUser = async (req, res) => {
       throw new Error("Password must be at least 5 characters long");
     }
 
-    const newUserFile = await fs.readFileSync(userDB, "utf-8");
-
-    const data = JSON.parse(newUserFile);
+    
 
     if (data.find(({ email }) => email === upEmail)) {
       console.log(data);
@@ -50,6 +48,7 @@ export const createNewUser = async (req, res) => {
 
     const userId = await createUser(upEmail, Password, username);
     console.log(userId);
+    await client.end();
     return userId;
     return "User created successfully";
   } catch (error) {
