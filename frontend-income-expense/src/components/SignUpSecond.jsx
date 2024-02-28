@@ -1,5 +1,7 @@
 import { Steps } from "@/components/Steps";
 import { FaMoneyBill } from "react-icons/fa";
+
+
 export const SignUpSecond = (props) => {
   const { stage = 1, nextHandle } = props;
   return (

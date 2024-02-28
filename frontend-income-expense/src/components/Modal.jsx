@@ -2,12 +2,32 @@ import React from "react";
 
 import { useState } from "react";
 import { IoIosClose } from "react-icons/io";
+import { IoIosAddCircle } from "react-icons/io";
+import { FaGift } from "react-icons/fa";
+import { MdHomeFilled } from "react-icons/md";
+import { PiForkKnifeFill } from "react-icons/pi";
+import { BiSolidDrink } from "react-icons/bi";
+import { PiTaxiFill } from "react-icons/pi";
+import { FaShoppingBag } from "react-icons/fa";
 
-export const Modal = ({ onClose }) => {
+import { useContext } from "react";
+import { RecordModalContext } from "./Providers/RecordProvider";
+// import AddCategoryProvider, {
+//   AddCategoryContext,
+// } from "./Providers/AddCategoryProvider";
+
+export const Modal = ({ onClose, setShowCategory }) => {
+  const { showModal, setShowModal } = useContext(RecordModalContext);
+  // const { showCategory, setShowCategory } = useContext(AddCategoryContext);
   const [button, setButton] = useState(true);
 
   const handleClick = () => {
     setButton(!button);
+  };
+
+  const handlerClickPros = () => {
+    setShowModal(false);
+    setShowCategory(false);
   };
 
   return (
@@ -62,14 +82,58 @@ export const Modal = ({ onClose }) => {
             <div className="mt-6 w-full py-5 flex flex-col gap-2">
               <label className="">Category</label>
               <div className="flex flex-col gap-2">
-                <select className="select w-full bg-slate-100">
-                  <option selected>Choose</option>
-                  <option>Write Here</option>
-                  <option>Write Here</option>
-                  <option>Write Here</option>
-                  <option>Write Here</option>
-                  <option>Write Here</option>
-                </select>
+                <div className="dropdown">
+                  <div tabIndex={0} role="button" className="btn m-1">
+                    Find or Choose Category
+                  </div>
+                  <ul
+                    tabIndex={0}
+                    className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                  >
+                    <div className="flex items-center">
+                      <li>
+                        <button
+                          onClick={() => handlerClickPros()}
+                          className="btn btn-sm h-[35px] text-[15px] rounded-xl"
+                        >
+                          {" "}
+                          <IoIosAddCircle /> Add Category
+                        </button>
+                      </li>
+                    </div>
+
+                    <li>
+                      <a>
+                        <MdHomeFilled /> Home
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        <FaGift /> Gift
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        <PiForkKnifeFill /> Food
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        <BiSolidDrink /> Drink
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        <PiTaxiFill /> Taxi
+                      </a>
+                    </li>
+                    <li>
+                      <a>
+                        <FaShoppingBag /> Shopping
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
 
@@ -96,13 +160,14 @@ export const Modal = ({ onClose }) => {
               Add Record
             </button>
           </div>
+
           <div className="w-[48%] flex flex-col gap-6">
             <div className="flex flex-col gap-2">
               <p>Payee</p>
               <select className="select w-full bg-slate-100">
                 <option selected>Write Here</option>
-                <option>Write Here</option>
-                <option>Write Here</option>
+                <option>Here</option>
+                <option>Write</option>
                 <option>Write Here</option>
                 <option>Write Here</option>
                 <option>Write Here</option>
