@@ -25,7 +25,6 @@ export const RecordCol = () => {
   };
   const handleInput2 = (e) => {
     setCount([count[0], e.target.value]);
-    console.log(count[1]);
   };
   // const handleAddButtonClick = () => {
   //   setShowModal(true);

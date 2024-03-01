@@ -31,7 +31,7 @@ export const SignUp = (props) => {
   const [passerror, setPasserror] = useState(false);
 
   const { push } = useRouter();
-  const url = "http://localhost:4000/users";
+  const url = "http://localhost:8000/users";
 
   const handleJump = async (e) => {
     push("/login");

@@ -1,1 +1,1 @@
-export const getCategoriesQuery = async () => {};
+// export const getCategoriesQuery = async () => {};
